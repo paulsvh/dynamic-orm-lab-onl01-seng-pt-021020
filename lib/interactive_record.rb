@@ -52,4 +52,3 @@ class InteractiveRecord
   end
 
 end
-
