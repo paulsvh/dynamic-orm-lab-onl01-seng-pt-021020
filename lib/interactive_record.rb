@@ -51,10 +51,14 @@ class InteractiveRecord
     DB[:conn].execute(sql, name)
   end
 
-  def self.find_by(attribute_hash)
-    column = attribute_hash.keys.first
-    attribute = attribute_hash.values.first
-    sql = "select * from #{self.table_name} where #{column} = #{attribute}"
+  def self.find_by(attribute = {})
+    column = nil
+    value = nil
+    attribute.each do |k, v|
+      column = k.to_s.downcase
+      value = v
+    end
+    sql = "select * from #{table_name} where #{column} = '#{value}'"
     DB[:conn].execute(sql)
   end
 
