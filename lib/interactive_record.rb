@@ -58,7 +58,7 @@ class InteractiveRecord
       column = k.to_s.downcase
       value = v
     end
-    sql = "select * from #{table_name} where #{column} = '#{value}'"
+    sql = "select * from #{table_name} where #{column} = #{value}"
     DB[:conn].execute(sql)
   end
 
